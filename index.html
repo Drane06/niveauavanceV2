@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan de Formation Numérique - Focus IA Avancée</title>
+    <!-- Ajout des polices Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Ajout de Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --color-bg-light: #f5f7fa; 
+            --color-bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --color-text-dark: #2c3e50;
+            --color-text-medium: #555;
+            --theme-header-gradient: linear-gradient(135deg, #4c66cc 0%, #3e51a8 100%);
+            --theme-header-color: #4c66cc;
+            --theme-ia-2-gradient: linear-gradient(135deg, #d44d75 0%, #b83a5e 100%);
+            --theme-ia-2-color: #d44d75;
+            --theme-ia-2-light: #fff0f3;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background: var(--color-bg-gradient);
+            min-height: 100vh;
+            padding: 60px 20px;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+            background: var(--theme-header-gradient);
+            padding: 50px 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        .logo-img {
+            width: 320px;
+            height: 120px;
+            border-radius: 12px;
+            object-fit: contain;
+            background-color: white;
+            padding: 10px 20px; 
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.8em;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .workshop-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 40px;
+        }
+
+        .workshop-header {
+            padding: 30px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            background: var(--theme-ia-2-gradient);
+        }
+
+        .workshop-left-content { display: flex; align-items: center; gap: 20px; }
+
+        .workshop-logo-bubble {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background-color: var(--theme-ia-2-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.4);
+        }
+
+        .workshop-logo-img { width: 44px; height: 44px; border-radius: 50%; background: white; object-fit: contain; }
+
+        .workshop-title { font-family: 'Poppins', sans-serif; font-size: 1.35em; font-weight: 600; }
+
+        .badge { display: inline-block; background: rgba(255,255,255,0.25); padding: 6px 16px; border-radius: 20px; font-size: 0.85em; margin-top: 5px; }
+
+        .workshop-content { padding: 30px; }
+
+        /* ACCORDÉONS NIVEAU 2 */
+        .ia2-accordion-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .ia2-sub-item {
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid var(--theme-ia-2-color);
+            border-radius: 8px;
+            background: white;
+        }
+
+        .ia2-sub-header {
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        .ia2-sub-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+        .ia2-sub-item.active > .ia2-sub-content { max-height: 30000px; padding: 20px; border-top: 1px solid #eee; }
+        .ia2-sub-item.active > .ia2-sub-header { background-color: var(--theme-ia-2-light); }
+        .ia2-sub-item.active > .ia2-sub-header .fa-chevron-down { transform: rotate(180deg); }
+
+        /* ACCORDÉONS NIVEAU 3 */
+        .ia3-sub-item {
+            border: 1px solid #eee;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+
+        .ia3-sub-header {
+            padding: 12px 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            background: #f8f9fa;
+        }
+
+        .ia3-sub-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+        .ia3-sub-item.active > .ia3-sub-content { max-height: 15000px; padding: 15px; border-top: 1px solid #eee; }
+        .ia3-sub-item.active > .ia3-sub-header .fa-chevron-down { transform: rotate(180deg); }
+
+        /* FLASHCARDS */
+        .flashcards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 15px;
+        }
+
+        .flashcard { height: 400px; perspective: 1000px; cursor: pointer; }
+        .flashcard-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border-radius: 12px; }
+        .flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
+        .flashcard-front, .flashcard-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; padding: 25px; border-radius: 12px; display: flex; flex-direction: column; overflow-y: auto; }
+        .flashcard-front { background: white; border-left: 6px solid var(--theme-ia-2-color); }
+        .flashcard-back { background: var(--theme-ia-2-color); color: white; transform: rotateY(180deg); }
+        .flashcard-tag { font-size: 0.8em; font-weight: 700; opacity: 0.6; margin-bottom: 10px; }
+        .flashcard-question { font-weight: 700; color: var(--theme-ia-2-color); line-height: 1.4; margin-bottom: 15px; }
+        .flashcard-back h4 { margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 5px; }
+        .flashcard-back p { font-size: 0.95em; line-height: 1.6; }
+
+        /* TABLEAU DES BIAIS */
+        .bias-table-container { width: 100%; overflow-x: auto; margin-top: 20px; border-radius: 8px; }
+        .bias-table { width: 100%; border-collapse: collapse; min-width: 900px; font-size: 0.9em; background: white; }
+        .bias-table th { background: var(--theme-ia-2-color); color: white; padding: 12px; text-align: left; }
+        .bias-table td { padding: 12px; border-bottom: 1px solid #edf2f7; vertical-align: top; line-height: 1.4; }
+        .bias-table tr:nth-child(even) { background: #f8fafc; }
+        .question-highlight { background: #fffde7; padding: 4px 8px; border-radius: 4px; font-weight: 700; color: #856404; display: block; margin-top: 5px; border: 1px solid #ffe082; }
+
+        /* BOXES SPÉCIFIQUES */
+        .content-block-simple { padding: 20px; border-radius: 8px; margin-bottom: 15px; line-height: 1.6; }
+        .case-study-box { background: #fffaf0; border-left: 4px solid #ed8936; padding: 20px; margin-bottom: 20px; border-radius: 8px; }
+        .intro-theory-box { background: #fff; padding: 25px; border-radius: 10px; border: 1px solid #e2e8f0; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
+        .critical-questions-box { background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+        .critical-questions-box ul { list-style: none; padding-left: 0; margin-top: 15px; }
+        .critical-questions-box li { margin-bottom: 12px; color: var(--color-text-dark); padding-left: 30px; position: relative; font-weight: 500; }
+        .critical-questions-box li::before { content: "\f059"; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; left: 0; color: var(--theme-ia-2-color); }
+        
+        .safe-reflex { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; padding: 15px; border-radius: 10px; background: #f8fafc; border: 1px solid #e2e8f0; }
+        .safe-letter { background: var(--theme-ia-2-color); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 700; flex-shrink: 0; }
+
+        .content-list { list-style: none; padding-left: 5px; }
+        .content-list li { margin-bottom: 10px; padding-left: 20px; position: relative; line-height: 1.5; }
+        .content-list li::before { content: "•"; color: var(--theme-ia-2-color); font-weight: bold; position: absolute; left: 0; }
+
+        .timer-btn { background: #f1f3f5; border: 1px solid #dee2e6; color: #495057; padding: 5px 12px; border-radius: 20px; cursor: pointer; font-size: 0.85em; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; }
+        .timer-btn.running { background: var(--theme-ia-2-light); border-color: var(--theme-ia-2-color); color: var(--theme-ia-2-color); }
+
+        footer { text-align: center; margin-top: 50px; padding: 20px; color: var(--color-text-medium); font-size: 0.9em; border-top: 1px solid #ddd; }
+
+        /* Style spécifique pour les liens dans les ressources */
+        .resource-link {
+            color: var(--theme-ia-2-color);
+            text-decoration: underline;
+            font-weight: 600;
+        }
+        .resource-link:hover {
+            color: #b83a5e;
+        }
+
+        /* Style pour le tableau de frugalité */
+        .frugality-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.95em; }
+        .frugality-table th, .frugality-table td { border: 1px solid #e2e8f0; padding: 10px; text-align: left; }
+        .frugality-table th { background: #f8fafc; font-weight: 700; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="https://www.pedagogie.ac-nice.fr/dane/documents-dane/editeurs/DRANE/Logo_DRANE_Bleu_Klein_de%CC%81taille%CC%81.png" alt="Logo DRANE" class="logo-img">
+            <h1>Plan de Formation Numérique</h1>
+        </header>
+
+        <div class="workshops-grid">
+            <div class="workshop-card expanded">
+                <div class="workshop-header" onclick="this.parentNode.classList.toggle('expanded')">
+                    <div class="workshop-left-content">
+                        <div class="workshop-logo-bubble"><img src="https://img.freepik.com/vecteurs-premium/ai-generer-symbole-vectoriel-abstrait-intelligence-artificielle-icone-etoiles-colorees_34480-1539.jpg" class="workshop-logo-img"></div>
+                        <div>
+                            <div class="workshop-title">Enseigner à l'heure des IA génératives</div>
+                            <div class="badge">Niveau avancé</div>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                
+                <div class="workshop-content">
+                    <div class="workshop-body">
+                        <div class="workshop-intro">
+                            <i class="fa-solid fa-rocket"></i> Maîtriser le cadre pédagogique et éthique pour initier les élèves aux enjeux de l'IA.
+                        </div>
+                        
+                        <div class="ia2-accordion-container">
+                            <!-- SECTION 0 : CHECKLIST ET DÉFINITIONS -->
+                            <div class="ia2-sub-item">
+                                <div class="ia2-sub-header" onclick="toggleSubItem(event, this.parentNode)">
+                                    <div class="ia2-sub-header-left">
+                                        <i class="fa-solid fa-clipboard-check icon-left"></i> 
+                                        <span>Checklist & Définitions</span>
+                                        <button class="timer-btn" onclick="toggleTimer(event, this, 5)" title="Lancer le chrono">
+                                            <i class="fa-solid fa-stopwatch"></i> <span class="time-display">05:00</span>
+                                        </button>                                    </div>
+                                    <i class="fa-solid fa-chevron-down ia2-sub-arrow"></i>
+                                </div>
+                                <div class="ia2-sub-content">
+                                    <div class="content-block-simple" style="background-color: #f8f9fa; border-left: 3px solid #6c757d;">
+                                        <div class="content-title-simple" style="font-weight: bold; margin-bottom: 10px;"><i class="fa-solid fa-shield-halved"></i> Checklist de sécurité</div>
+                                        <ul class="content-list">
+                                            <li><strong>Utiliser un compte mail générique dédié :</strong> Ce compte ne doit pas être votre compte mail principal ne doit  contenir aucune donnée personnelle et être réservé exclusivement aux outils d'IA que vous souhaitez tester.</li>
+                                            <li><strong>Partage d'aucune données personnelles ou sensibles :</strong> Dans une IA grand public, n’écrivez pas et ne copiez pas : noms/prénoms d’élèves, coordonnées, documents scolaires nominaux, appréciations, situations familiales, données de santé, etc. (Cadre MEN p.8).</li>
+                                            <li><strong>Vérifier systématiquement les Conditions Générales d’Utilisation :</strong> Privilégier les outils sans compte et européens (ex : Mistral, Lumo, Euria...) (Cadre MEN p.4-5).</li>
+                                            <li><strong>Penser à être transparent sur votre utilisation :</strong> Expliquer le cadre d’usage : objectifs pédagogiques, règles de sécurité, exemples de <a href="https://mpeters.uqo.ca/utilisation-transparente-de-lintelligence-artificielle/" target="_blank" class="resource-link">logos</a> pour une utilisation transparente de l'IA générative.</li>
+                                            <li><strong>Opposition à l'entraînement des IA :</strong> Cherchez dans les réglages : confidentialité / “utilisation des données” / “amélioration du modèle”. Activez l’option qui refuse la réutilisation de vos textes ou fichiers pour entraîner l’IA, quand elle existe. (droit RGPD - <a href="https://www.cnil.fr/fr/ia-comment-sopposer-la-reutilisation-de-ses-donnees-personnelles-entrainement-agent-conversationnel" target="_blank" class="resource-link">CNIL "Droit d'opposition"</a>).</li>
+                                            
+                                            <!-- OUTILS RGPD -->
+                                            <li style="margin-top: 15px; background: #f0f7ff; padding: 15px; border-radius: 8px; border: 1px solid #d0e2ff;">
+                                                <strong>Outils à privilégier pour respecter le RGPD</strong>
+                                                <div style="margin-top: 10px;">
+                                                    <strong style="color: #0056b3;">Solutions souveraines et conformes :</strong>
+                                                    <ul style="list-style: none; margin-top: 5px;">
+                                                        <li> <strong>Mistral LLM</strong> : Le modèle de langage français développé par Mistral AI, entreprise française qui héberge ses serveurs en Europe et garantit la conformité RGPD.</li>
+                                                        <li> <strong>Euria</strong> : Un chatbot souverain, gratuit et hébergé intégralement en Suisse, offrant une alternative respectueuse de la vie privée.</li>
+                                                        <li> <strong>Spirit</strong> : Le chatbot pédagogique de Pearltrees, conçu spécifiquement pour l'éducation avec une approche respectueuse des données.</li>
+                                                        <li> <strong>Proton AI</strong> : Un assistant très confidentiel développé par Proton (les créateurs de ProtonMail), qui place la confidentialité au cœur de son fonctionnement.</li>
+                                                    </ul>
+                                                </div>
+                                                <div style="margin-top: 15px;">
+                                                    <strong style="color: #b91c1c;">Cas particuliers nécessitant des outils non-RGPD :</strong>
+                                                    <p style="font-size: 0.9em; margin-bottom: 5px;">Dans certaines situations, il n’existe pas encore d’alternative pleinement conforme au RGPD pour certaines fonctionnalités spécifiques. Dans ces cas-là, il peut être envisagé d’utiliser un outil non-RGPD, à condition de le faire avec quelques précautions simples : rester sur des contenus non nominatifs, éviter toute donnée sensible, et clarifier l’objectif pédagogique. :</p>
+                                                    <ul style="list-style: none;">
+                                                        <li> <strong>NotebookLM</strong> : Pour la synthèse vidéo de documents.</li>
+                                                        <li> <strong>Gamma</strong> : Pour la création rapide de présentations.</li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="content-block-simple" style="background-color: #fff; border: 1px solid #eee;">
+                                        <div class="content-title-simple" style="color: var(--color-text-dark); font-weight: bold; margin-bottom: 10px;">Définitions, rappels importants :</div>
+                                        <p><strong>Selon la CNIL, l’IA générative désigne des systèmes d’intelligence artificielle capables de produire/créer des contenus (par exemple texte, images, audio, vidéo, code, etc.).</strong></p>
+                                        <p>L’IA générative est une technologie qui crée du contenu (texte, image, son, code) à partir d’instructions (prompts). Elle repose sur des algorithmes capables d’imiter la créativité humaine, en s’appuyant sur de grandes bases de données préexistantes. C'est en quelque sorte un stagiaire numérique sous stéroïde : il est rapide et efficace, capable d’aider à reformuler, structurer, optimiser notre temps et améliorer du contenu. C'est un stagiaire, sans autonomie ni esprit critique, qui fait souvent des erreurs. Il est toujours disponible et il est toujours d'accord avec nous. <strong>Définition plus personnelle !!</strong></p>
+                                        <p style="margin-top: 10px; padding-top: 10px; border-top: 1px dashed #eee; font-size: 0.95em;">
+                                            <strong>Pour aller plus loin :</strong> <a href="https://www.iaep.be/fonctionnement/iag/af45f9dda7552f82388c8d3f6c52fd06c03ac7d5b928100779c41951b3a643ad" target="_blank" class="resource-link">Une vidéo qui explique parfaitement le fonctionnement des IA génératives</a>
+                                        </p>
+                                    </div>
+
+                                    <div class="content-block-simple" style="background-color: #ffebee; border-left: 3px solid #d32f2f;">
+                                        <div class="content-title-simple" style="color: #b71c1c;"><i class="fa-solid fa-triangle-exclamation"></i> Rappel essentiel du Cadre MEN</div>
+                                        <div style="margin-bottom: 10px;">
+                                            <strong>1. ⛔ Interdiction de demander la création de comptes personnels :</strong>
+                                            <p style="font-size: 0.9em; font-style: italic; padding-left: 10px; border-left: 2px solid #ef9a9a;">"Aucun membre du personnel ne doit demander aux élèves d'utiliser des services d'IA grand public impliquant la création d'un compte personnel." (p.8)</p>
+                                        </div>
+                                        <div>
+                                            <strong>2. ✅ Nécessité d'une plus-value pédagogique :</strong>
+                                            <p style="font-size: 0.9em; font-style: italic; padding-left: 10px; border-left: 2px solid #ef9a9a;">"N'utilisez l'IA que lorsqu'une plus-value pédagogique est avérée." (p.13)</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- SECTION RESSOURCES -->
+                                    <div class="content-block-simple" style="background-color: #f3e5f5; border-left: 3px solid #9c27b0;">
+                                        <div class="content-title-simple" style="color: #7b1fa2; font-weight: bold; margin-bottom: 10px;"><i class="fa-solid fa-book-bookmark"></i> Ressources</div>
+                                        <ul class="content-list">
+                                            <li><a href="https://nice.magistere.apps.education.fr/course/view.php?id=1540" target="_blank" class="resource-link">Magistère</a></li>
+                                            <li><a href="https://drane06.github.io/selection_doutils_enseignant/" target="_blank" class="resource-link">Sélection d’applications, adaptées au contexte scolaire.</a></li>
+                                            <li><a href="https://drane06.github.io/casdusagepedagogique/" target="_blank" class="resource-link">Cas d'usages pédagogiques.</a></li>
+                                            <li><a href="https://www.pedagogie.ac-nice.fr/dane/s-informer/cadre-de-reference-de-l-ia-en-education" target="_blank" class="resource-link">Cadre d'usage de l'IA en éducation</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- SECTION 1 : CADRE NATIONAL (AVEC LES 4 PILIERS COMPLETS) -->
+                            <div class="ia2-sub-item">
+                                <div class="ia2-sub-header" onclick="toggleSubItem(event, this.parentNode)">
+                                    <div class="ia2-sub-header-left">
+                                        <i class="fa-solid fa-scale-balanced icon-left"></i> 
+                                        <span>Cadre National et éthique : usages en classe</span>
+                                        <button class="timer-btn" onclick="toggleTimer(event, this, 20)" title="Lancer le chrono">
+                                            <i class="fa-solid fa-stopwatch"></i> <span class="time-display">20:00</span>
+                                        </button>                                    </div>
+                                    <i class="fa-solid fa-chevron-down ia2-sub-arrow"></i>
+                                </div>
+                                <div class="ia2-sub-content">
+                                    <div class="ia3-sub-item">
+                                        <div class="ia3-sub-header ia3-header-theory" onclick="toggleLevel3(this)">
+                                            <div><i class="fa-solid fa-shield-halved"></i> Théorie : Les 4 piliers du cadre réglementaire</div>
+                                            <i class="fa-solid fa-chevron-down"></i>
+                                        </div>
+                                        <div class="ia3-sub-content">
+                                            <!-- MESSAGE CLÉ -->
+                                            <div style="background-color: #e8f5e9; padding: 15px; border-left: 4px solid #4caf50; margin-bottom: 20px; border-radius: 4px;">
+                                                <strong style="color: #2e7d32;"><i class="fa-solid fa-circle-check"></i> Message clé</strong><br>
+                                                "L'usage de l'IA est autorisé en éducation dès lors qu'il respecte le cadre défini. Ce cadre n'est pas une contrainte mais une protection pour vous et vos élèves."<br>
+                                                <small><em>Contexte : Cadre d'usage de l'IA en éducation (juin 2025) • Fruit d'une consultation nationale (janvier-mai 2025).</em></small>
+                                            </div>
+
+                                            <div style="margin-bottom: 25px;">
+                                                <h4 style="color: var(--theme-ia-2-color); margin-bottom: 10px;">PILIER 1 : PROTECTION DES DONNÉES (priorité absolue)</h4>
+                                                <p><strong>📌 Règle d'or :</strong> "Aucune donnée personnelle ou confidentielle dans les IA grand public"</p>
+                                                <div style="margin-top: 10px; background: #fff; border: 1px solid #ddd; padding: 15px; border-radius: 5px;">
+                                                    <strong>✅ CE QUI PEUT ÊTRE SAISI :</strong>
+                                                    <ul class="content-list">
+                                                        <li>Programmes officiels et textes du Bulletin Officiel,textes réglementaires, programmes scolaires, instructions officielles.</li>
+                                                        <li>Ressources éducatives,contenus publics comme ceux d’Éduscol, Lumni, Wikipédia, etc..</li>
+                                                        <li>Données statistiques anonymisées.</li>
+                                                        <li>Œuvres du domaine public,textes, images ou autres contenus qui ne sont plus protégés par le droit d’auteur.</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                            <div style="margin-bottom: 25px;">
+                                                <h4 style="color: var(--theme-ia-2-color); margin-bottom: 10px;">PILIER 2 : FRUGALITÉ ET IMPACT ENVIRONNEMENTAL</h4>
+                                                <p style="font-style: italic;">"L'IA ne doit être utilisée que si aucune autre solution moins coûteuse écologiquement ne répond de façon satisfaisante au besoin." (p.8)</p>
+                                                <p style="margin-top: 10px;"><strong>📊 Chiffre clé :</strong> Une réponse générée par IA = <strong>10 fois plus énergivore</strong> qu'une recherche Google (p.6)</p>
+                                                
+                                                <table class="frugality-table">
+                                                    <thead><tr><th>Situation</th><th>Pourquoi l'IA est pertinente ?</th></tr></thead>
+                                                    <tbody>
+                                                        <tr><td>Créer 3 versions différenciées</td><td>La différenciation pédagogique est essentielle mais chronophage lorsqu’elle est réalisée manuellement. L’IA permet de générer rapidement plusieurs versions d’une même activité (simplifiée, standard, approfondie) tout en conservant les mêmes objectifs d’apprentissage. Elle devient pertinente lorsque le temps gagné permet à l’enseignant de se recentrer sur l’accompagnement des élèves.</td></tr>
+                                                        <tr><td>Générer des aides graduées</td><td>Produire des aides progressives (indices, reformulations, exemples intermédiaires) demande une anticipation fine et un temps de préparation important. L’IA est utile ici car elle peut décliner un même contenu en plusieurs niveaux de guidage, favorisant l’autonomie des élèves, ce qui serait difficilement faisable manuellement dans un temps contraint.</td></tr>
+                                                        <tr><td>Concevoir un support pédagogique personnel et engageant</td><td>L’IA peut aider à transformer une idée ou un contenu brut en support attractif et motivant (mise en forme, scénarisation, questions engageantes, exemples contextualisés). Elle est pertinente lorsque les outils classiques ne suffisent plus à capter l’attention des élèves et que l’objectif est de renforcer l’implication, la compréhension ou la mémorisation, sans multiplier les ressources dispersées.</td></tr>
+                                                    </tbody>
+                                                </table>
+                                                <p><strong>🎯 Règle pratique :</strong> "Si je peux le faire rapidement sans IA, je n'utilise pas l'IA."</p>
+                                                <p style="margin-top: 10px; font-size: 0.9em; background: #f1f5f9; padding: 10px; border-radius: 4px;">
+                                                    <i class="fa-solid fa-leaf" style="color: #2e7d32;"></i> Très bon outil  pédagogique, ComparIA apporte une plus-value pédagogique en aidant enseignants et élèves à choisir des outils d’IA adaptés à leurs besoins réels, favorisant ainsi des usages réfléchis, limitant le recours systématique à l’IA et contribuant à une approche plus frugale et énergétiquement responsable: <a href="https://comparia.beta.gouv.fr" target="_blank" class="resource-link">comparia.beta.gouv.fr</a>
+                                                </p>
+                                            </div>
+
+                                            <div style="margin-bottom: 25px;">
+                                                <h4 style="color: var(--theme-ia-2-color); margin-bottom: 10px;">PILIER 3 : ESPRIT CRITIQUE ET VÉRIFICATION</h4>
+                                                <p style="font-style: italic;">"Les productions générées par l'IA doivent être vérifiées et croisées avec d'autres sources." (p.10)</p>
+                                                <div style="margin-top: 15px;">
+                                                    <strong>⚠️ Les 4 types d'erreurs de l'IA :</strong>
+                                                    <ul class="content-list">
+                                                        <li><strong>Hallucinations :</strong> L’IA ne vérifie pas les faits : elle génère des réponses en prédissant des suites de mots plausibles. En l’absence de sources explicites ou lorsque l’information est rare, elle peut inventer des citations, des références ou des dates, tout en les formulant de manière crédible.</li>
+                                                        <li><strong>Biais :</strong> SLes réponses de l’IA reflètent les déséquilibres présents dans les données sur lesquelles elle a été entraînée. Cela peut conduire à la reproduction de stéréotypes, à une surreprésentation de certains points de vue ou à l’absence d’autres perspectives.</li>
+                                                        <li><strong>Imprécisions scientifiques :</strong> L’IA vise souvent la clarté et la simplicité, au détriment de la rigueur. Elle peut alors proposer des raccourcis, des généralisations ou des analogies qui altèrent la précision des notions, en particulier dans les disciplines scientifiques ou techniques.</li>
+                                                        <li><strong>Obsolescence :</strong> Les modèles d’IA ne disposent pas toujours d’un accès à des données à jour grosses différence avec des applications utilisées avec ou sans compte. Les modèles peuvent produire des contenus fondés sur des programmes, des réglementations ou des connaissances dépassées, sans signaler leur ancienneté.</li>
+                                                    </ul>
+                                                </div>
+                                                <div style="margin-top: 20px; border: 1px dashed var(--theme-header-color); padding: 15px; border-radius: 8px;">
+                                                    <strong>✅ Principe de vérification raisonnée</strong><br>
+Avant toute utilisation en classe ou diffusion, une production issue de l’IA doit être confrontée à des sources fiables et reconnues :<br>
+– références officielles (programmes, manuels),<br>
+– ressources institutionnelles,<br>
+– contenus académiques ou scientifiques.<br><br>
+
+La validation humaine reste indispensable : c’est l’enseignant (ou l’élève accompagné) qui garantit l’exactitude, la pertinence et l’adéquation au cadre scolaire.<br><br>
+
+<strong>✅ Renforcer la fiabilité : l’apport du RAG (Retrieval-Augmented Generation)</strong><br>
+Le RAG consiste à adosser l’IA à un corpus de documents fiables sélectionnés par l’enseignant (programmes officiels, ressources institutionnelles, manuels, documents pédagogiques personnels).<br>
+L’IA ne produit alors des réponses qu’à partir de ces sources, ce qui permet de :<br>
+– réduire fortement les hallucinations,<br>
+– ancrer les réponses dans des contenus vérifiés et actualisés,<br>
+– garantir la conformité aux programmes et au cadre institutionnel,<br>
+– valoriser les ressources professionnelles de l’enseignant (documents de cours, progressions, séquences).<br><br>
+
+Pour l’enseignant, le RAG transforme l’IA en un assistant pédagogique contextualisé, au service de la préparation de cours, de la différenciation et de la reformulation, sans renoncer à la rigueur.
+
+                                                </div>
+                                            </div>
+
+                                            <div style="margin-bottom: 25px;">
+                                                <h4 style="color: var(--theme-ia-2-color); margin-bottom: 10px;">PILIER 4 : USAGES PÉDAGOGIQUES SELON LES NIVEAUX</h4>
+                                                <ul class="content-list">
+                                                    <li><strong>Progressivité :</strong> Progressivité des usages selon les cycles scolaires
+Le cadre d’usage recommande d’adapter les pratiques d’IA aux différents niveaux de scolarité pour assurer une appropriation graduée et responsable. Dans le premier degré, les élèves sont sensibilisés aux concepts de base de l’intelligence artificielle sans manipulation directe d’IA générative. À partir de la 4ᵉ (collège), l’usage pédagogique de l’IA générative par les élèves est autorisé uniquement en classe, encadré et accompagné par un enseignant. Au lycée, les élèves peuvent progressivement utiliser des outils d’IA de manière plus autonome dans un cadre défini par l’enseignant, avec des objectifs clairs et une supervision pédagogique. Cette progressivité permet d’articuler la maîtrise des outils numériques, le développement de l’esprit critique et la construction des compétences méthodologiques en contexte scolaire sans mise en danger des apprentissages fondamentaux..</li>
+                                                    <li><strong>Transparence obligatoire :</strong> Lorsqu’un outil d’IA est utilisé (par un enseignant ou par des élèves), il est essentiel d’informer clairement les élèves et leurs familles sur le quoi, le comment et le pourquoi de cet usage. Cette transparence favorise une culture numérique responsable, une meilleure compréhension des finalités pédagogiques et renforce la confiance dans les pratiques éducatives.</li>
+                                                    <li><strong>Assistant, jamais remplaçant :</strong> Le cadre d’usage rappelle que l’IA doit toujours être utilisée pour compléter et enrichir l’expertise professionnelle des enseignants, et non pour la remplacer. Elle doit servir d’outil d’accompagnement des apprentissages, de soutien à la créativité, à la différenciation et à la personnalisation raisonnée, tout en garantissant que les décisions pédagogiques et didactiques restent sous le contrôle du professeur(p.8).</li>
+                                                </ul>
+                                                <div style="margin-top: 15px; background: #fff5f5; border: 1px solid #feb2b2; padding: 15px; border-radius: 5px;">
+                                                    <strong style="color: #c53030;"><i class="fa-solid fa-gavel"></i> Définition officielle de la fraude (p.10)</strong><br>
+                                                    "L’utilisation d’une intelligence artificielle générative
+pour réaliser tout ou partie d’un devoir scolaire,
+sans autorisation explicite de l’enseignant
+et sans qu’elle soit suivie d’un travail personnel
+d’appropriation à partir des contenus produits,
+constitue une fraude. Elle est assimilée, à ce titre,
+à l’intervention d’une tierce personne ou à la
+reproduction non signalée de contenus existants.."
+                                                </div>
+                                            </div>
+
+                                            <div style="background: #f8fafc; border: 1px solid #cbd5e0; padding: 15px; border-radius: 8px;">
+                                                <h4 style="color: #2d3748; margin-bottom: 10px;"><i class="fa-solid fa-microchip"></i> Détecteurs d'IA : NE PAS UTILISER</h4>
+                                                <p>Non recommandés (p.10) car peu fiables : en raison de leur manque
+de fiabilité, l’utilisation des logiciels de détection
+de contenus générés par l’IA n’est pas recommandée,
+car elle pourrait pénaliser à tort un élève.</p>
+                                                <ul class="content-list" style="font-size: 0.9em;">
+                                                    <li>Taux de faux positifs élevé (20-40%).</li>
+                                                    <li>Risque de pénaliser injustement un élève.</li>
+                                                    <li>Ne respectent pas la présomption d'innocence.</li>
+                                                    <li><strong>Exemple :</strong> La Déclaration des Droits de l'Homme passée dans un détecteur d'IA  donne ce résultat "Texte généré à 92% par une IA". Vous pouvez faire l'expérience avec des textes personnels et observer les résultats.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="ia3-sub-item">
+                                        <div class="ia3-sub-header ia3-header-practice" onclick="toggleLevel3(this)">
+                                            <div><i class="fa-solid fa-thumbs-up-down"></i> Pratique : 10 situations (Flashcards)</div>
+                                            <i class="fa-solid fa-chevron-down"></i>
+                                        </div>
+                                        <div class="ia3-sub-content">
+                                            <p style="margin-bottom: 20px; font-weight: 600; color: var(--color-text-dark);">Cliquez sur les cartes pour révéler la réponse :</p>
+                                            <div class="flashcards-grid">
+                                               <!-- Situation 1 -->
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">
+          <div class="flashcard-tag">Situation 1</div>
+          <p class="flashcard-question">
+            Vous souhaitez utiliser ChatGPT pour adapter un cours de philosophie après correction.
+            Vous copiez-collez plusieurs extraits <strong>réels</strong> de copies (avec formulations exactes, voire prénom/classe)
+            pour identifier les difficultés. <strong>Cette pratique est-elle autorisée ? Pourquoi ?</strong>
+          </p>
+          <div style="margin-top: auto; font-size: 0.85em; text-align: center; color: #999;">
+            <i class="fa-solid fa-rotate"></i> Voir la réponse
+          </div>
+        </div>
+        <div class="flashcard-back">
+          <h4>❌ Non, c’est interdit.</h4>
+          <p>
+            Les copies d’élèves contiennent des <strong>données à caractère personnel</strong>. Le cadre autorise l’usage des IA
+            grand public uniquement si <strong>aucune donnée personnelle/confidentielle</strong> n’est saisie : seules des données
+            « pouvant être rendues publiques » sont admises. Reformulez donc les difficultés <strong>de manière anonyme et générique</strong>
+            (ex. : « confusion thèse/argument »), sans extraits réels.
+          </p>
+          <p style="margin-top:10px; font-size:0.9em;">
+            <strong>Justification (cadre)</strong> : Obligations légales – Protection des données (p. 8) + « À retenir : Soyez vigilant sur les données saisies » (p. 12).
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Situation 2 -->
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">
+          <div class="flashcard-tag">Situation 2</div>
+          <p class="flashcard-question">
+            Vous suspectez qu’un devoir a été rédigé avec une IA générative. Un collègue recommande un logiciel de
+            « détection d’IA » pour le prouver. <strong>Le cadre recommande-t-il d’utiliser ce logiciel ? Quelle alternative privilégier ?</strong>
+          </p>
+          <div style="margin-top: auto; font-size: 0.85em; text-align: center; color: #999;">
+            <i class="fa-solid fa-rotate"></i> Voir la réponse
+          </div>
+        </div>
+        <div class="flashcard-back">
+          <h4>❌ Non, ce n’est pas recommandé.</h4>
+          <p>
+            Le cadre souligne le <strong>manque de fiabilité</strong> de ces outils : ils peuvent produire des faux positifs et
+            <strong>pénaliser à tort</strong> un élève. Préférez des démarches pédagogiques : <strong>entretien oral</strong>, questions ciblées
+            sur le raisonnement, et <strong>adaptation des modalités d’évaluation</strong> (processus, brouillons, production en classe…).
+          </p>
+          <p style="margin-top:10px; font-size:0.9em;">
+            <strong>Justification (cadre)</strong> : Devoirs et évaluations – point de vigilance sur la détection (p. 10).
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Situation 3 -->
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">
+          <div class="flashcard-tag">Situation 3</div>
+          <p class="flashcard-question">
+            Vous avez 35 dissertations à corriger. Vous utilisez une IA pour produire une <strong>correction-type</strong>,
+            puis vous évaluez chaque copie vous-même. <strong>Cette pratique est-elle conforme au cadre ? À quelles conditions ?</strong>
+          </p>
+          <div style="margin-top: auto; font-size: 0.85em; text-align: center; color: #999;">
+            <i class="fa-solid fa-rotate"></i> Voir la réponse
+          </div>
+        </div>
+        <div class="flashcard-back">
+          <h4>✅ Oui, sous conditions strictes.</h4>
+          <p>
+            L’IA peut <strong>assister</strong> la préparation (grilles, éléments de correction, exemples), mais ne doit jamais
+            <strong>remplacer</strong> votre jugement. Conditions : (1) <strong>aucune donnée personnelle d’élève</strong> dans l’outil,
+            (2) contenus <strong>vérifiés et croisés</strong> avec des sources fiables, (3) décision d’évaluation <strong>humaine</strong>
+            et individualisée.
+          </p>
+          <p style="margin-top:10px; font-size:0.9em;">
+            <strong>Justification (cadre)</strong> : Principes généraux – l’IA assiste mais ne remplace pas (p. 8) + productions à vérifier et croiser (p. 10).
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Situation 4 -->
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">
+          <div class="flashcard-tag">Situation 4</div>
+          <p class="flashcard-question">
+            Vous utilisez une IA pour reformuler une consigne simple ou résumer un article court que vous pourriez lire en quelques minutes.
+            <strong>Cet usage respecte-t-il le principe de frugalité ?</strong>
+          </p>
+          <div style="margin-top: auto; font-size: 0.85em; text-align: center; color: #999;">
+            <i class="fa-solid fa-rotate"></i> Voir la réponse
+          </div>
+        </div>
+        <div class="flashcard-back">
+          <h4>❌ Non, ce n’est pas conforme à la frugalité.</h4>
+          <p>
+            Le cadre demande un usage <strong>raisonné</strong> : l’IA ne doit être utilisée que si <strong>aucune autre solution moins coûteuse écologiquement</strong>
+            ne répond de façon satisfaisante au besoin. Ici, la lecture/reformulation personnelle (ou une recherche simple) est préférable.
+          </p>
+          <p style="margin-top:10px; font-size:0.9em;">
+            <strong>Justification (cadre)</strong> : Principes généraux – usage frugal (p. 8) + « Renoncez à l’IA si une autre solution… » (p. 12).
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Situation 5 -->
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">
+          <div class="flashcard-tag">Situation 5</div>
+          <p class="flashcard-question">
+            Vous avez conçu un sujet de dissertation avec l’aide d’une IA générative. Vous hésitez à le mentionner aux élèves.
+            <strong>Le cadre impose-t-il une obligation de transparence ? Pourquoi ?</strong>
+          </p>
+          <div style="margin-top: auto; font-size: 0.85em; text-align: center; color: #999;">
+            <i class="fa-solid fa-rotate"></i> Voir la réponse
+          </div>
+        </div>
+        <div class="flashcard-back">
+          <h4>✅ Oui, la transparence est attendue.</h4>
+          <p>
+            Le cadre demande que l’usage de l’IA soit exercé en <strong>transparence et responsabilité</strong>. En contexte pédagogique,
+            le signaler renforce la confiance et participe à l’<strong>éducation critique</strong> des élèves (comprendre le rôle de l’IA, ses limites,
+            et ce que vous avez gardé/modifié).
+          </p>
+          <p style="margin-top:10px; font-size:0.9em;">
+            <strong>Justification (cadre)</strong> : Transparence (p. 9) + « À retenir : Soyez transparent… » (p. 12).
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Situation 6 -->
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">
+          <div class="flashcard-tag">Situation 6</div>
+          <p class="flashcard-question">
+            Pour une séance d’analyse critique, vous envisagez de demander aux élèves de créer un compte personnel sur un service d’IA grand public (ex. ChatGPT).
+            <strong>Pouvez-vous le demander ?</strong>
+          </p>
+          <div style="margin-top: auto; font-size: 0.85em; text-align: center; color: #999;">
+            <i class="fa-solid fa-rotate"></i> Voir la réponse
+          </div>
+        </div>
+        <div class="flashcard-back">
+          <h4>❌ Non, c’est explicitement interdit.</h4>
+          <p>
+            Le cadre précise qu’<strong>aucun personnel</strong> ne doit demander aux élèves d’utiliser des services d’IA grand public impliquant
+            la création d’un <strong>compte personnel</strong>. Préférez un outil validé par l’institution/établissement, ou une utilisation
+            <strong>collective encadrée</strong> (projection, démonstration) sans comptes élèves.
+          </p>
+          <p style="margin-top:10px; font-size:0.9em;">
+            <strong>Justification (cadre)</strong> : Protection des données – interdiction de demander un compte personnel (p. 8) + rappel « À retenir » (p. 12).
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Situation 7 -->
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">
+          <div class="flashcard-tag">Situation 7</div>
+          <p class="flashcard-question">
+            En SES, vous générez des études de cas avec une IA. Vous constatez des stéréotypes : « infirmières » au féminin, « ingénieurs » au masculin.
+            <strong>Quelle posture professionnelle le cadre attend-il ?</strong>
+          </p>
+          <div style="margin-top: auto; font-size: 0.85em; text-align: center; color: #999;">
+            <i class="fa-solid fa-rotate"></i> Voir la réponse
+          </div>
+        </div>
+        <div class="flashcard-back">
+          <h4>✅ Posture critique + correction + exploitation pédagogique.</h4>
+          <p>
+            Le cadre alerte sur les <strong>biais</strong> et la reproduction de stéréotypes. Vous devez : (1) <strong>corriger</strong> le contenu avant diffusion,
+            (2) expliciter les limites et biais possibles de l’IA, (3) utiliser l’exemple pour développer l’<strong>esprit critique</strong> des élèves
+            (tri, comparaison, diversification des cas).
+          </p>
+          <p style="margin-top:10px; font-size:0.9em;">
+            <strong>Justification (cadre)</strong> : Risques – biais et discriminations (p. 6) + « À retenir : Exercez votre esprit critique » (p. 13).
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Situation 8 -->
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">
+          <div class="flashcard-tag">Situation 8</div>
+          <p class="flashcard-question">
+            Vous mettez en place une IA qui analyse les résultats scolaires pour <strong>suggérer</strong> l’orientation (ex. choix de spécialités en Première).
+            <strong>Peut-on s’appuyer directement sur ces suggestions ? Quelles garanties sont exigées ?</strong>
+          </p>
+          <div style="margin-top: auto; font-size: 0.85em; text-align: center; color: #999;">
+            <i class="fa-solid fa-rotate"></i> Voir la réponse
+          </div>
+        </div>
+        <div class="flashcard-back">
+          <h4>⚠️ Usage à haut risque.</h4>
+          <p>
+            Ce type d’usage peut relever des <strong>systèmes d’IA “à haut risque”</strong> car il impacte les parcours d’élèves. Le cadre exige :
+            <strong>supervision humaine</strong> (équité, explicabilité), <strong>validation préalable</strong> par l’autorité compétente, et
+            <strong>information</strong> des personnes concernées (droits, recours). La décision finale doit rester <strong>humaine</strong>.
+          </p>
+          <p style="margin-top:10px; font-size:0.9em;">
+            <strong>Justification (cadre)</strong> : Transparence + décisions à impact significatif (p. 9) + rappel du RIA et de la supervision humaine (p. 9–10).
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Situation 9 -->
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">
+          <div class="flashcard-tag">Situation 9</div>
+          <p class="flashcard-question">
+            L’IA vous fournit des dates, citations et bibliographies très convaincantes pour un cours.
+            <strong>Pouvez-vous les utiliser telles quelles ? Quelles vérifications sont attendues ?</strong>
+          </p>
+          <div style="margin-top: auto; font-size: 0.85em; text-align: center; color: #999;">
+            <i class="fa-solid fa-rotate"></i> Voir la réponse
+          </div>
+        </div>
+        <div class="flashcard-back">
+          <h4>❌ Non, jamais sans vérification.</h4>
+          <p>
+            Les IA peuvent produire des <strong>inexactitudes</strong> (« hallucinations ») et inventer des références. Vous devez :
+            (1) vérifier l’exactitude des faits, (2) croiser avec des sources fiables, (3) vérifier l’existence des ouvrages/articles cités,
+            (4) renoncer si vous ne pouvez pas évaluer la pertinence et l’impartialité.
+          </p>
+          <p style="margin-top:10px; font-size:0.9em;">
+            <strong>Justification (cadre)</strong> : Risques – hallucinations (p. 6) + « À retenir : Exercez votre esprit critique » (p. 13).
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Situation 10 -->
+    <div class="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">
+          <div class="flashcard-tag">Situation 10</div>
+          <p class="flashcard-question">
+            Un élève rend une dissertation excellente. Mais lors d’un échange oral, il ne maîtrise pas les notions et ne peut expliquer son raisonnement.
+            <strong>Comment le cadre qualifie-t-il cette situation ?</strong>
+          </p>
+          <div style="margin-top: auto; font-size: 0.85em; text-align: center; color: #999;">
+            <i class="fa-solid fa-rotate"></i> Voir la réponse
+          </div>
+        </div>
+        <div class="flashcard-back">
+          <h4>🚫 Fraude (si l’IA a fait le devoir sans autorisation et sans appropriation).</h4>
+          <p>
+            Le cadre indique que réaliser tout ou partie d’un devoir avec une IA générative, <strong>sans autorisation explicite</strong> et
+            <strong>sans travail personnel d’appropriation</strong>, constitue une <strong>fraude</strong> (assimilée à l’intervention d’une tierce personne
+            ou à la reproduction non signalée). Pour limiter cela : adaptez les évaluations en mettant au premier plan le
+            <strong>raisonnement</strong> (production en classe, oral, étapes, brouillons…).
+          </p>
+          <p style="margin-top:10px; font-size:0.9em;">
+            <strong>Justification (cadre)</strong> : Devoirs et évaluations – définition de la fraude (p. 10) + « Adapter les devoirs/modalités d’évaluation » (p. 13).
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- SECTION 2 : IA ET ESPRIT CRITIQUE -->
+                            <div class="ia2-sub-item">
+                                <div class="ia2-sub-header" onclick="toggleSubItem(event, this.parentNode)">
+                                    <div class="ia2-sub-header-left">
+                                        <i class="fa-solid fa-brain icon-left"></i> 
+                                        <span>IA et esprit critique</span>
+                                        <button class="timer-btn" onclick="toggleTimer(event, this, 20)" title="Lancer le chrono">
+                                            <i class="fa-solid fa-stopwatch"></i> <span class="time-display">20:00</span>
+                                        </button>                                    </div>
+                                    <i class="fa-solid fa-chevron-down ia2-sub-arrow"></i>
+                                </div>
+                                <div class="ia2-sub-content">
+                                    
+                                    <!-- 1. Paradoxe -->
+                                    <div class="ia3-sub-item">
+                                        <div class="ia3-sub-header ia3-header-theory" onclick="toggleLevel3(this)">
+                                            <div><i class="fa-solid fa-bolt"></i> Le paradoxe de l'amélioration technologique</div>
+                                            <i class="fa-solid fa-chevron-down"></i>
+                                        </div>
+                                        <div class="ia3-sub-content">
+    <div class="intro-theory-box">
+
+  <h4 style="color: var(--theme-ia-2-color); margin-top: 0;">
+    Progrès des modèles de langage : une fiabilité trompeuse
+  </h4>
+
+  <ul style="margin-bottom: 15px;">
+    <li>
+      Les grands modèles de langage (ChatGPT, Claude, Gemini, Mistral) ont fortement progressé :
+        <li>Données d’entraînement plus récentes et plus étendues ;</li>
+        <li>Capacités de raisonnement améliorées ;</li>
+        <li>Possibilité, pour certains, de rechercher en ligne et de croiser des sources en temps réel.</li>
+      </ul>
+    </li>
+    <li>Ces avancées donnent une impression de fiabilité accrue.</li>
+    <li>Le danger se situe précisément dans cette crédibilité apparente.</li>
+  </ul>
+
+  <h4 style="color: var(--theme-ia-2-color); margin-top: 20px;">
+    Des erreurs moins visibles mais toujours présentes
+  </h4>
+
+  <ul style="margin-bottom: 15px;">
+    <li>Même les modèles les plus performants produisent encore un taux d’erreurs significatif.</li>
+    <li>La différence principale : les erreurs sont devenues plus difficiles à repérer.</li>
+    <li>
+      Les hallucinations grossières laissent place à des inexactitudes subtiles :
+        <li>Approximations élégamment formulées ;</li>
+        <li>Raisonnements cohérents mais fondés sur des prémisses fausses ;</li>
+        <li>Citations et références plausibles, parfois inventées.</li>
+      </ul>
+    </li>
+    <li>L’erreur n’est plus choquante : elle devient persuasive.</li>
+  </ul>
+
+  <h4 style="color: var(--theme-ia-2-color); margin-top: 20px;">
+    Un risque amplifié pour les apprenants
+  </h4>
+
+  <ul style="margin-bottom: 0;">
+    <li>De nombreux élèves et étudiants utilisent l’IA comme premier réflexe de recherche.</li>
+    <li>
+      Ils ont moins développé les réflexes essentiels :
+        <li>Croiser les sources ;</li>
+        <li>Vérifier l’information ;</li>
+        <li>Garder une distance critique face à une réponse bien formulée.</li>
+      </ul>
+    </li>
+    <li>La qualité rédactionnelle renforce la confiance et peut conduire à une acceptation passive.</li>
+    <li>
+      Risque central : Adopter des contenus erronés sans questionnement critique
+      (« Est-ce vraiment exact ? »).
+    </li>
+  </ul>
+
+</div>
+
+
+                                        </div>
+                                    </div>
+
+                                    <!-- 2. Exemple Petra -->
+                                    <div class="ia3-sub-item">
+                                        <div class="ia3-sub-header ia3-header-theory" onclick="toggleLevel3(this)">
+                                            <div><i class="fa-solid fa-magnifying-glass"></i> Un exemple parfait !</div>
+                                            <i class="fa-solid fa-chevron-down"></i>
+                                        </div>
+                                        <div class="ia3-sub-content">
+                                            <div class="case-study-box">
+                                                <p><strong>L'incident :</strong> La nouvelle rectrice de l'UGent, Petra De Sutter en Belgique, a utilisé une IA générative pour rédiger son discours d'ouverture en septembre. L'IA a notamment créé de toutes pièces deux citations.</p>
+                                                <p style="margin-top: 10px;"><em>"Dogma is the enemy of progress"</em> et <em>"Knowledge describes and masters reality; wisdom seeks answers to existential questions - and is connected to culture and ethics"</em> : deux citations faussement attribuées respectivement au scientifique Albert Einstein et à l'auteur Paul Verhaeghe.</p>
+                                                <p style="margin-top: 10px;">Si ces "hallucinations" et quelques autres erreurs ont échappé à la vigilance de l'équipe de l'ex-ministre, elles n'ont pas trompé certains collègues de l'université. L'établissement a fini par corriger la retranscription du discours.</p>
+                                                <p style="margin-top: 10px; font-style: italic; border-left: 3px solid #ed8936; padding-left: 10px;">"Je regrette profondément d'être tombée dans ce piège", a déclaré Petra De Sutter à Belga. "Je ne peux malheureusement plus revenir dessus. Cette expérience est pour moi une bonne leçon."</p>
+                                            </div>
+
+                                            <div style="margin-top: 25px;">
+                                                <h4 style="color: var(--color-text-dark); margin-bottom: 15px;">Comprendre les hallucinations de l'IA</h4>
+                                                <p>Les IA génératives produisent ce qu'on appelle des "hallucinations" : elles inventent des informations qui semblent vraies mais qui sont fausses. Cela arrive pour deux raisons principales. D'abord, quand l'IA ne trouve pas exactement l'information dans ce qu'elle a appris, au lieu de dire "je ne sais pas", elle va inventer une réponse plausible en combinant ce qu'elle connaît du sujet. Ensuite, et c'est le plus important, l'IA ne fait pas la différence entre "reconstruire quelque chose qu'elle a vraiment vu" et "créer quelque chose de nouveau qui ressemble à ce qu'elle a vu". Elle fonctionne comme un prédicteur de mots : elle génère le texte qui semble le plus probable, pas le texte le plus vrai. C'est pourquoi elle peut inventer avec assurance des citations d'Einstein, des livres qui n'existent pas, ou des faits historiques plausibles - le tout rédigé de manière si convaincante qu'on a l'impression que c'est forcément vrai.</p>
+                                            </div>
+                                            
+                                            <p style="margin-top: 20px; font-weight: 500; line-height: 1.6; color: var(--color-text-dark); background: #f8fafc; padding: 15px; border-radius: 8px; border-left: 4px solid var(--theme-header-color);">
+                                                L'esprit critique consiste à maintenir l'humain comme pilote de sa pensée : l'IA peut explorer, structurer, suggérer, mais le jugement final doit rester le nôtre, informé et conscient des limites de ces technologies.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <!-- 3. Pluralisme -->
+                                    <div class="ia3-sub-item">
+                                        <div class="ia3-sub-header ia3-header-theory" onclick="toggleLevel3(this)">
+                                            <div><i class="fa-solid fa-layer-group"></i> Le pluralisme des modèles : un allié de l'esprit critique</div>
+                                            <i class="fa-solid fa-chevron-down"></i>
+                                        </div>
+                                        <div class="ia3-sub-content">
+                                            <p style="margin-bottom: 15px; color: var(--color-text-medium); line-height: 1.6;">Face à la domination de quelques acteurs, le pluralisme des modèles d’IA devient essentiel. Comme le pluralisme médiatique protège la démocratie, la diversité des IA peut renforcer l’autonomie intellectuelle et l’esprit critique.</p>
+                                            <strong style="display: block; margin-bottom: 8px; color: var(--color-text-dark);">Le principe : éviter la « pensée unique »</strong>
+                                            <p style="margin-bottom: 15px;">L’enjeu est d’empêcher qu’un seul modèle monopolise l’accès à l’information et finisse par imposer un cadrage. Chaque modèle reflète des choix (données, méthodes d'entraînement). D'où l'intérêt de croiser : des origines différentes, des entraînements distincts, des biais variés.</p>
+
+                                            <div class="ia3-sub-item" style="border-color: #cbd5e0; margin-top: 15px;">
+                                                <div class="ia3-sub-header" style="background-color: #edf2f7; color: #2d3748;" onclick="toggleLevel3(this)">
+                                                    <div><i class="fa-solid fa-magnifying-glass-plus"></i> Pour aller plus loin</div>
+                                                    <i class="fa-solid fa-chevron-down"></i>
+                                                </div>
+                                                <div class="ia3-sub-content">
+                                                    <div class="critical-questions-box">
+                                                        <p>Apprendre à repérer ces biais, c'est développer son esprit critique. Cela signifie vous poser les bonnes questions :</p>
+                                                        <ul>
+                                                            <li>Qui contrôle l'IA ? Qui a décidé ce qu'elle peut dire ou ce qu'elle doit refuser ?</li>
+                                                            <li>Quelles informations manquent ? Qu'est-ce qui a été caché, modifié ou même inventé ?</li>
+                                                            <li>Qui est pénalisé ? Certaines personnes sont-elles injustement désavantagées par ces choix ?</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="bias-table-container">
+                                                        <table class="bias-table">
+                                                            <thead>
+                                                                <tr><th>Outil / contexte</th><th>Exemple concret de réponse</th><th>Type de biais</th><th>Qui décide ?</th><th>Question critique</th></tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr><td><strong>ChatGPT</strong> (Politique US)</td><td>Poème élogieux accepté pour Joe Biden, refusé pour Donald Trump.</td><td>Refus asymétrique</td><td>Règles d'alignement de l'entreprise</td><td><span class="question-highlight">Regarde qui est accepté / refusé</span></td></tr>
+                                                                <tr><td><strong>Google Gemini</strong> (Images)</td><td>Images historiques "diversifiées" mais non fidèles au contexte.</td><td>Sur-correction → erreur historique</td><td>Paramètres + choix de conception</td><td><span class="question-highlight">Compare avec la réalité historique</span></td></tr>
+                                                                <tr><td><strong>Grok (Musk / Trump)</strong></td><td>Consigne interne pour éviter les sources disant que Musk/Trump diffusent de la désinformation.</td><td>Censure de certaines sources</td><td>Prompt système / réglages internes</td><td><span class="question-highlight">Quelles informations sont cachées ?</span></td></tr>
+                                                                <tr><td><strong>Grok (Orientation)</strong></td><td>Même question, réponse qui change après ajustement interne.</td><td>Orientation ligne éditoriale</td><td>Modification des priorités internes</td><td><span class="question-highlight">Qu'est-ce qui a changé et pourquoi ?</span></td></tr>
+                                                                <tr><td><strong>Marché Chinois</strong></td><td>Sujets sensibles (Tian'anmen, Taïwan) évités ou édulcorés.</td><td>Censure politique directe</td><td>Contraintes réglementaires d'État</td><td><span class="question-highlight">Quels sujets sont évités ?</span></td></tr>
+                                                                <tr><td><strong>LLM Généralistes</strong></td><td>Refus par défaut pour des recherches (terrorisme, drogues, élections) à cause de mots-clés.</td><td>Refus par défaut (overblocking)</td><td>Filtres de sécurité automatisés</td><td><span class="question-highlight">Qui est bloqué injustement ?</span></td></tr>
+                                                                <tr><td><strong>DeepSeek</strong></td><td>Refus de Tian'anmen, texte valorisant le récit officiel.</td><td>Évitement + récit imposé</td><td>Données autorisées par l'État</td><td><span class="question-highlight">Que manque-t-il dans la réponse ?</span></td></tr>
+                                                                <tr><td><strong>Amazon</strong> (Recrutement)</td><td>Outil abandonné : il pénalisait les CV contenant le mot "femme".</td><td>Biais de genre historique</td><td>Données d'entraînement passées</td><td><span class="question-highlight">Qui est désavantagé ?</span></td></tr>
+                                                                <tr><td><strong>Apple Card</strong> (Crédit)</td><td>Accusations de limites de crédit plus faibles pour les femmes.</td><td>Biais indirect (variables proxy)</td><td>Modèles de scoring bancaire</td><td><span class="question-highlight">Qui a moins de chances ?</span></td></tr>
+                                                                <tr><td><strong>Images</strong> (Stéréotypes)</td><td>Infirmières majoritairement femmes, chirurgiens hommes par défaut.</td><td>Stéréotypes et amplification</td><td>Images légendées du web</td><td><span class="question-highlight">Quels stéréotypes vois-tu ?</span></td></tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 4. SAFE -->
+                                    <div class="ia3-sub-item">
+                                        <div class="ia3-sub-header ia3-header-practice" onclick="toggleLevel3(this)">
+                                            <div><i class="fa-solid fa-shield-check"></i> La méthode SAFE pour se protéger</div>
+                                            <i class="fa-solid fa-chevron-down"></i>
+                                        </div>
+                                        <div class="ia3-sub-content">
+                                            <p style="margin-bottom: 20px;">Adoptez ces 4 réflexes critiques systématiques :</p>
+                                            <div class="safe-reflex"><div class="safe-letter">S</div><div><strong>SOURCER :</strong> Toute citation ou fait doit avoir une source vérifiable. Règle d'or : <em>"Pas de source = pas de confiance"</em>.</div></div>
+                                            <div class="safe-reflex"><div class="safe-letter">A</div><div><strong>ANOMALIES :</strong> Repérez les signaux d'alerte : ton trop parfait, citation trop alignée. <em>"Est-ce trop beau pour être vrai ?"</em>.</div></div>
+                                            <div class="safe-reflex"><div class="safe-letter">F</div><div><strong>FACT-CHECK :</strong> Croisez avec au moins 2 sources indépendantes. Cherchez l'œuvre originale.</div></div>
+                                            <div class="safe-reflex"><div class="safe-letter">E</div><div><strong>EXPERT HUMAIN :</strong> Les réponses des Ia sont une première version, votre brouillon, pas un produit fini.</div></div>
+                                            <div style="background-color: #fff8e1; border: 1px dashed #d97706; padding: 15px; border-radius: 8px; text-align: center; font-style: italic; margin-top: 20px;">
+                                                <p>Comme l'a dit Albert Einstein "L'esprit critique est la boussole de la connaissance ; sans elle, nous dérivons dans l'ocean de l'ignorance." Sauf que non, il n'a jamais dit ça !</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 5. Ressources -->
+                                    <div class="ia3-sub-item">
+                                        <div class="ia3-sub-header ia3-header-practice" onclick="toggleLevel3(this)">
+                                            <div><i class="fa-solid fa-link"></i> Ressources</div>
+                                            <i class="fa-solid fa-chevron-down"></i>
+                                        </div>
+                                        <div class="ia3-sub-content">
+                                            <p style="font-weight: bold; margin-bottom: 10px;">Ressources interactives et vidéos :</p>
+                                            <ul class="content-list">
+                                                <li><a href="https://mi.hepl.ch/projects/ia/ia.html" target="_blank" class="resource-link">Comprendre les hallucinations (HEPL)</a></li>
+                                                <li><a href="https://drane06.github.io/biais/" target="_blank" class="resource-link">Tester les biais</a></li>
+                                                <li><a href="https://www.iaep.be/fonctionnement/bia/7a21f2d7dc5406fe75c33408faa6982d253b7bd3f55c4262421c5805184d1aa2" target="_blank" class="resource-link">Comprendre  les biais</a></li>
+                                                <li><a href="https://www.survivalofthebestfit.com/" target="_blank" class="resource-link">Simulation : Survival of the Best Fit</a></li>
+                                                <li><a href="https://www.youtube.com/watch?v=xXHWTC4mJBM" target="_blank" class="resource-link">Vidéo : Hallucinations de l'IA</a></li>
+                                                <li><a href="https://www.data-bird.co/blog/hallucinations-ia" target="_blank" class="resource-link">Article : Qu'est-ce qu'une hallucination IA ?</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- SECTION 4 : LITTÉRATIE CRITIQUE (AMÉLIORÉE) -->
+                            <div class="ia2-sub-item">
+                                <div class="ia2-sub-header" onclick="toggleSubItem(event, this.parentNode)">
+                                    <div class="ia2-sub-header-left">
+                                        <i class="fa-solid fa-users-viewfinder icon-left"></i> 
+                                        <span>Littératie critique de l'IA pour les élèves</span>
+                                        <button class="timer-btn" onclick="toggleTimer(event, this, 20)" title="Lancer le chrono">
+                                            <i class="fa-solid fa-stopwatch"></i> <span class="time-display">20:00</span>
+                                        </button>                                    </div>
+                                    <i class="fa-solid fa-chevron-down ia2-sub-arrow"></i>
+                                </div>
+                                <div class="ia2-sub-content">
+                                    <div class="ia3-sub-item">
+                                        <div class="ia3-sub-header ia3-header-theory" onclick="toggleLevel3(this)">
+                                            <div><i class="fa-solid fa-eye"></i> Théorie : Littératie de l'IA</div>
+                                            <i class="fa-solid fa-chevron-down"></i>
+                                        </div>
+                                        <div class="ia3-sub-content">
+                                            <p style="font-style: italic; color: var(--color-text-dark); margin-bottom: 20px;">"La littératie critique de l’IA, c’est la capacité à comprendre comment fonctionne une intelligence artificielle, à questionner la fiabilité de ses réponses, et à l’utiliser de manière responsable, sans perdre son esprit critique."</p>
+                                            
+                                            <p style="font-weight: bold; margin-bottom: 15px;">Les 3 piliers de la littératie critique de l'IA pour les élèves :</p>
+                                            
+                                            <ul class="content-list">
+                                                <!-- Pilier 1 -->
+                                                <li style="margin-bottom: 25px;">
+                                                    <strong style="color: var(--theme-ia-2-color);">1. COMPRENDRE (Comment ça marche ?)</strong>
+                                                    <div style="margin-top: 10px;">
+                                                        <strong>Concepts clés à transmettre :</strong>
+                                                        <ul style="list-style: none; margin-left: 10px; margin-top: 5px;">
+                                                            <li> L'IA génère du contenu par <strong>prédiction statistique</strong>, pas par "compréhension" réelle.</li>
+                                                            <li> Elle s'entraîne sur d'énormes corpus de textes existants (apprentissage à partir de données).</li>
+                                                            <li> Elle peut reproduire des biais présents dans ses données d'entraînement.</li>
+                                                            <li> L'IA ne "pense" pas : elle calcule des probabilités de mots/phrases.</li>
+                                                        </ul>
+                                                    </div>
+                                                    
+                                                    <div style="margin-top: 15px; background: #fff8e1; padding: 15px; border-radius: 8px; border: 1px solid #ffe082;">
+                                                        <strong style="display: block; margin-bottom: 10px;"><i class="fa-solid fa-keyboard"></i> Focus : Le prompt, ou comment formuler sa demande</strong>
+                                                        <p style="font-size: 0.95em; margin-bottom: 10px;">La qualité de la réponse de l’IA dépend directement de la précision de votre demande. C’est un peu comme une consigne de devoir : plus elle est claire, plus la production sera pertinente. Apprendre à formuler un prompt précis, structuré et réfléchi devient ainsi une compétence indispensable à enseigner aux élèves, au même titre que la formulation d’une problématique ou la rédaction d’une consigne efficace.</p>
+                                                        <p><strong>Les éléments d'un prompt efficace :</strong></p>
+                                                        <ul style="list-style: none; font-size: 0.9em; margin-top: 5px;">
+                                                            <li> <strong>Le rôle :</strong> Qui doit être l'IA ? (Ex: "Tu es un professeur d'histoire")</li>
+                                                            <li> <strong>Le contexte :</strong> Pour qui ? Dans quel but ? (Ex: "pour réviser une évaluation")</li>
+                                                            <li> <strong>La tâche précise :</strong> Verbe d'action clair (Explique, compare, résume, critique...)</li>
+                                                            <li> <strong>Le format souhaité :</strong> (Liste, tableau, paragraphe, dialogue, quiz...)</li>
+                                                            <li> <strong>Le style :</strong> Quel ton ? (Pédagogique, humoristique, formel, simple...)</li>
+                                                        </ul>
+                                                        <p style="margin-top: 10px; font-style: italic; font-size: 0.9em; color: #856404;">"L'IA ne devine pas les attentes des utilisateurs. Plus les prompts sont précis, meilleure sera la réponse."</p>
+                                                    </div>
+
+                                                    <div style="margin-top: 15px; padding-left: 20px;">
+                                                        <strong>Ressources vidéo :</strong><br>
+                                                        • <a href="https://www.lumni.fr/video/utiliser-l-ia-au-lycee" target="_blank" class="resource-link">Lumni : Utiliser l'IA au lycée</a><br>
+                                                        • <a href="https://youtu.be/1RRHr3dFogQ?si=8Dv3KQQR4hQkdoaO" target="_blank" class="resource-link">Comprendre l'IA (Vidéo YouTube)</a>
+                                                    </div>
+                                                </li>
+
+                                                <!-- Pilier 2 -->
+                                                <li style="margin-bottom: 25px;">
+                                                    <strong style="color: var(--theme-ia-2-color);">2. QUESTIONNER (Peut-on lui faire confiance ?)</strong>
+                                                    <div style="margin-top: 10px;">
+                                                        <strong>Compétences critiques à développer :</strong>
+                                                        <ul style="list-style: none; margin-left: 10px; margin-top: 5px;">
+                                                            <li> Vérifier les sources et faits produits par l'IA : L’IA ne possède pas de connaissances au sens humain : elle génère des réponses probables.
+Toute information importante doit être vérifiée à l’aide de sources fiables.</li>
+                                                            <li> Identifier les <strong>hallucinations</strong> :  Une hallucination est une information inventée par l’IA, mais présentée de manière assurée et crédible.
+L’IA peut créer :
+
+Des dates ou des chiffres faux,
+
+des citations inexistantes,
+
+des explications cohérentes mais incorrectes.
+Il faut toujours rester vigiant.</li>
+                                                            <li> Reconnaître <strong>les biais techniques et sociaux </strong> : L’IA n’est ni neutre ni objective, elle reflète les limites et les biais de ses données.
+Cela peut entraîner :
+
+des stéréotypes,
+
+des généralisations,
+
+des points de vue partiels présentés comme des vérités. L’IA n’a pas d’expertise réelle ni d’esprit critique.</li>
+                                                            <li> Vérifier l'actualité : Les IA possèdent une date limite de connaissances, qui varie selon la version utilisée et selon que l’on utilise un compte gratuit ou payant une version connectée au web ou pas.
+➡️ Une information peut donc être incomplète, dépassée ou inexacte si le contexte a évolué après la fin de son entraînement ou si l’IA n’a pas accès à des données récentes.</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div style="margin-top: 15px; background: #f0fdf4; padding: 15px; border-radius: 8px; border: 1px solid #bbf7d0;">
+                                                        <strong><i class="fa-solid fa-flask"></i> Activités pédagogiques :</strong>
+                                                        <ul style="list-style: none; font-size: 0.95em; margin-top: 5px;">
+                                                            <li> 🧪 <strong>Expérience "Piège à IA" :</strong> posez des questions avec des dates fausses pour voir si l'IA les corrige.</li>
+                                                            <li> 🔬 <strong>Chasse aux hallucinations :</strong> comparez les réponses de plusieurs IA sur le même sujet.</li>
+                                                            <li> 🎲 <strong>Le jeu du détective :</strong> fact-checker une réponse d'IA ensemble en classe.</li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+
+                                                <!-- Pilier 3 -->
+                                                <li>
+                                                    <strong style="color: var(--theme-ia-2-color);">3.  UTILISER de façon responsable</strong>
+                                                    <div style="margin-top: 15px;">
+                                                        <p><strong>Dimensions essentielles :</strong></p>
+                                                        <ul style="list-style: none; margin-top: 10px;">
+                                                            <li style="margin-bottom: 10px;"><strong> Protection des données personnelles :</strong>  Ne jamais partager d'informations personnelles.  Les conversations peuvent être stockées.  Privilégier les outils conformes RGPD.</li>
+                                                            <li style="margin-bottom: 10px;"><strong> Propriété intellectuelle :</strong>  Toujours reformuler et personnaliser.  Distinguer "aide à la réflexion" et "remplacement de la réflexion".</li>
+                                                            <li style="margin-bottom: 10px;"><strong> Impact environnemental :</strong>  Chaque requête consomme de l'énergie.  Se demander : "Ai-je vraiment besoin de l'IA pour cette tâche ?"</li>
+                                                            <li><strong> Esprit critique :</strong>  "L'IA est un outil, pas un oracle".  Utiliser l'IA pour stimuler sa réflexion, pas la remplacer.</li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- SECTION 5 : ATELIERS DE CRÉATION AVEC IA -->
+                            <div class="ia2-sub-item">
+                                <div class="ia2-sub-header" onclick="toggleSubItem(event, this.parentNode)">
+                                    <div class="ia2-sub-header-left">
+                                        <i class="fa-solid fa-laptop-code icon-left"></i> 
+                                        <span>Ateliers de création avec des outils d'IA générative</span>
+                                    </div>
+                                    <i class="fa-solid fa-chevron-down ia2-sub-arrow"></i>
+                                </div>
+                                <div class="ia2-sub-content">
+                                    <p style="margin-bottom: 20px; line-height: 1.6;">Ces trois ateliers progressifs vous permettront d'expérimenter concrètement les outils d'IA générative dans une démarche pédagogique structurée : <strong>comprendre, questionner, créer</strong> tout en respectant le cadre d'usage (plus value, frugalité, transparence...).</p>
+
+                                    <!-- Atelier 1 -->
+                                    <div class="ia3-sub-item">
+                                        <div class="ia3-sub-header" onclick="toggleLevel3(this)">
+                                            <div><i class="fa-solid fa-film"></i> Atelier 1 - COMPRENDRE : Créer une vidéo pédagogique explicative</div>
+                                            <i class="fa-solid fa-chevron-down"></i>
+                                        </div>
+                                        <div class="ia3-sub-content">
+                                            <p><strong>Objectif :</strong> Transformer vos ressources pédagogiques en contenu multimédia accessible.</p>
+                                            <p style="margin-top: 10px;">À partir de vos ressources existantes (cours personnels, vidéos, documents en ligne), créez une courte vidéo pédagogique destinée à vos élèves avec <strong>NotebookLM</strong>.</p>
+                                            <p style="margin-top: 10px;"><strong>Exemple pratique :</strong> Expliquer simplement "Comment fonctionnent les IA génératives ?"</p>
+                                            <ul class="content-list" style="margin-top: 10px;">
+                                                <li>Rassemblez 3-5 sources complémentaires sur votre sujet.</li>
+                                                <li>Importez-les dans NotebookLM (PDF, liens web, notes textuelles).</li>
+                                                <li>Générez une vidéo pédagogique.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <!-- Atelier 2 -->
+                                    <div class="ia3-sub-item">
+                                        <div class="ia3-sub-header" onclick="toggleLevel3(this)">
+                                            <div><i class="fa-solid fa-magnifying-glass"></i> Atelier 2 - QUESTIONNER : Concevoir une fiche pédagogique + QCM critique</div>
+                                            <i class="fa-solid fa-chevron-down"></i>
+                                        </div>
+                                        <div class="ia3-sub-content">
+                                            <p>Créer une séquence pédagogique pour votre prochain cours.</p>
+                                            <p style="margin-top: 10px;"><strong>Exemple pratique :</strong> "Peut-on faire confiance à l'IA ?" Concevez une fiche pédagogique pour des élèves de 2de accompagnée d'un QCM.</p>
+                                            
+                                            <div style="margin-top: 15px;">
+                                                <strong>🛠️ Outils à disposition :</strong>
+                                                <p>Le LLM de votre choix (Mistral, Euria, ChatGPT...).</p>
+                                            </div>
+
+                                            <div style="margin-top: 15px; background: #f0f9ff; padding: 15px; border-radius: 8px; border-left: 4px solid #0ea5e9;">
+                                                <strong>🎓 Démarche pédagogique :</strong>
+                                                <p>Utilisez une ou des IA génératives, vérifiez le contenu obtenu, corrigez, améliorez, testez...</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Atelier 3 -->
+                                    <div class="ia3-sub-item">
+                                        <div class="ia3-sub-header" onclick="toggleLevel3(this)">
+                                            <div><i class="fa-solid fa-palette"></i> Atelier 3 - CRÉER : Réaliser une infographie à partir de sources</div>
+                                            <i class="fa-solid fa-chevron-down"></i>
+                                        </div>
+                                        <div class="ia3-sub-content">
+                                            <p><strong>Objectif :</strong> Synthétiser et communiquer visuellement des informations complexes.</p>
+                                            
+                                            <div style="margin-top: 15px;">
+                                                <strong>🎯 Votre mission :</strong>
+                                                <p>Créer un document visuel de référence à partir de sources multiples.</p>
+                                                <p><strong>Exemple pratique :</strong> Concevoir une "Charte d'utilisation responsable de l'IA" pour votre établissement.</p>
+                                            </div>
+
+                                            <div style="margin-top: 15px;">
+                                                <strong>✨ Outils recommandés :</strong>
+                                                <p>NotebookLM, Gamma par exemple.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            © 2025. DRANE Académie de Nice. Mis en forme avec des IA génératives :-)
+        </footer>
+    </div>
+
+    <script>
+        function toggleSubItem(event, item) {
+            event.stopPropagation();
+            const parent = item.parentElement;
+            if (item.classList.contains('active')) {
+                item.classList.remove('active');
+            } else {
+                parent.querySelectorAll('.ia2-sub-item.active').forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+            }
+        }
+
+        function toggleLevel3(header) {
+            header.parentElement.classList.toggle('active');
+        }
+
+        const activeTimers = new Map();
+        function toggleTimer(event, btn, minutes) {
+            event.stopPropagation(); 
+            const display = btn.querySelector('.time-display');
+            if (activeTimers.has(btn)) {
+                clearInterval(activeTimers.get(btn));
+                activeTimers.delete(btn);
+                btn.classList.remove('running');
+                return;
+            }
+            let totalSeconds = minutes * 60;
+            btn.classList.add('running');
+            const intervalId = setInterval(() => {
+                if (totalSeconds <= 0) {
+                    clearInterval(activeTimers.get(btn));
+                    activeTimers.delete(btn);
+                    btn.classList.remove('running');
+                    display.innerText = "00:00";
+                    return;
+                }
+                totalSeconds--;
+                const m = Math.floor(totalSeconds / 60);
+                const s = totalSeconds % 60;
+                display.innerText = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+            }, 1000);
+            activeTimers.set(btn, intervalId);
+        }
+    </script>
+</body>
+</html>
